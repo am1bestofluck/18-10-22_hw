@@ -3,6 +3,6 @@
 void test()
 {
     // input_flow.todo();
-    input_flow t1=input_flow();
+    input_flow t1= new input_flow();
 }
 test();

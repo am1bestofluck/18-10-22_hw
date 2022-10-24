@@ -1,53 +1,65 @@
 using static System.Console;
 class input_flow
 {
-    List<int> answers;
+    List<decimal> answers= new List<decimal>();
     
     public static void todo()
     {
         WriteLine("Пользователь вводит с клавиатуры M чисел. Посчитайте, сколько чисел больше 0 ввёл пользователь.");
     }
-    protected dynamic  lock_input()
+    protected dynamic  lock_input( List<decimal> _answers)
     {
-        int[] output= new int[this.answers.Count];
+        decimal[] output= new decimal[this.answers.Count];
+        for (int walk = 0; walk < _answers.Count; walk++)
+        {
+            output[walk]=_answers[walk];
+        }
         return output;
     }
-    void read_data_by_todo(int[] coll_i)
+bool stop_the_cycle(bool inc_spin)
+{
+    inc_spin=false;
+    return inc_spin;
+}
+    void read_data_by_todo(decimal[] coll_i)
     {
         int vocal_expression=0;
-        foreach (int walk in coll_i)
+        foreach (decimal walk in coll_i)
         {
-            bool  step=walk>0? vocal_expression++: vocal_expression=vocal_expression;
+            if (walk>0) vocal_expression++;
         }
-        WriteLine($"На входе: [{string.Join("", "",coll_i)}].");
+        string tmp=string.Join(", ",coll_i);
+        WriteLine($"На входе: [{tmp}].");
         WriteLine($"Положительных значений: {vocal_expression}");
 
     }
     protected dynamic routine()
     {
+        bool spin_the_cycle=true;
+        bool is_valid_input=false;
+        decimal buffer_dcm=0;
+        string buffer_str=string.Empty;
         Console.CancelKeyPress+=delegate
         {
-            int[] all_input_boxed=lock_input(cycle_spin_i:cycle_spin);
+            spin_the_cycle=stop_the_cycle(spin_the_cycle);
+            decimal[] all_input_boxed=lock_input(_answers: this.answers);
             read_data_by_todo(all_input_boxed);
             
         };
 
-        bool cycle_spin=true;
-        bool is_valid_input=false;
-        int buffer_int=0;
-        string buffer_str=string.Empty;
-        while (true)
+        WriteLine("Пожалуйста введи число, ctrl+c для завершения");
+        while (spin_the_cycle)
         {
-            WriteLine("Пожалуйста введи число, ctrl+c для завершения");
             buffer_str=ReadLine();
-            is_valid_input=decimal.TryParse(buffer_str,out buffer_int);
+            is_valid_input=decimal.TryParse(buffer_str,out buffer_dcm);
             if (is_valid_input)
             {
-                this.answers.Add(buffer_int);
+                this.answers.Add(buffer_dcm);
             }
         
 
-        } 
+        }
+        return null; 
     }
     public input_flow()
     {
