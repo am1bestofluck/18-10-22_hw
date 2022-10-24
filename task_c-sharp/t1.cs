@@ -47,7 +47,7 @@ bool stop_the_cycle(bool inc_spin)
             
         };
 
-        WriteLine("Пожалуйста введи число, ctrl+c для завершения");
+        WriteLine("Пожалуйста вводи числа, ctrl+c для завершения");
         while (spin_the_cycle)
         {
             buffer_str=ReadLine();
