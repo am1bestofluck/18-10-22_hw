@@ -9,9 +9,6 @@
 <td><a href="todo1"><p align="right">t1</p></a></td>
 <td><a href="todo2"><p align="right">t2</p></a></td>
 </tr>
-<tr>
-<td><strong>py</strong></td>
-<td><a href="todo3"><p align="right">t3</p></a></td>
-<td><a href="todo4"><p align="right">t4</p></a></td>
-</tr>
 </table>
+
+[вывод,c#.Питон какжись не успеваю. Ну за то отдохнул хорошо :).]( )

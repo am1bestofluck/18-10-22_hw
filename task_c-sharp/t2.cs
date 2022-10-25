@@ -1,15 +1,15 @@
 using static System.Console;
 
 class linear_equation{
-    Dictionary<string,decimal> coefficients= new Dictionary<string, decimal>();
+    Dictionary<string,double> coefficients= new Dictionary<string, double>();
     string[] _keys=new string[]{"k1","k2","m1","m2"};
     public static void todo()
     {
-        WriteLine(@"Напишите программу, которая найдёт точку пересечения двух прямых, заданных уравнениями y=k1\*x+b1,y=k2\*x+b2.  
+        WriteLine(@"Напишите программу, которая найдёт точку пересечения двух прямых, заданных уравнениями y=k1*x+b1,y=k2*x+b2.  
 *значения b1, k1, b2 и k2 задаются пользователем.");
     }
 
-    public  linear_equation(decimal? k1_i,decimal? k2_i, decimal? m1_i, decimal? m2_i)
+    public  linear_equation(double? k1_i=null,double? k2_i=null, double? m1_i=null, double? m2_i=null)
     {
         
         if (k1_i!=null)
@@ -18,6 +18,7 @@ class linear_equation{
         }
         else
         {
+            WriteLine("Для системы уравнений k1*x+m1=k2*x+m2:");
             coefficients.Add(_keys[0],gather_input(_keys[0]));
         }
         if (k2_i!=null)
@@ -26,7 +27,7 @@ class linear_equation{
         }
         else
         {
-            coefficients.Add(_keys[1],gather_input(_keys[0]));
+            coefficients.Add(_keys[1],gather_input(_keys[1]));
         }
         if (m1_i!=null)
         {
@@ -42,26 +43,26 @@ class linear_equation{
         }
         else
         {
-            coefficients.Add(_keys[0],gather_input(_keys[3]));
+            coefficients.Add(_keys[3],gather_input(_keys[3]));
         }
     }
-    decimal gather_input(string key_arg)//наследовать передумал, потому что класс из первого тз заточен на то чтобы принять условно любое количество чисел, а потом вообще ужал в одну функцию 
+    double gather_input(string key_arg)//наследовать передумал, потому что класс из первого тз заточен на то чтобы принять условно любое количество чисел, а потом вообще ужал в одну функцию 
     {
     bool is_valid_input=false;
-    decimal buffer_dcm=0;
+    double buffer_double=0;
     string buffer_str=string.Empty;
     while (is_valid_input==false)
     {
         WriteLine($"Пожалуйста введи {key_arg}");
         buffer_str=ReadLine()!;
-        is_valid_input=decimal.TryParse(buffer_str,out buffer_dcm);
+        is_valid_input=double.TryParse(buffer_str,out buffer_double);
     }
-    return buffer_dcm;
+    return buffer_double;
     }
-    private dynamic solution(decimal k1_i, decimal k2_i,decimal m1_i, decimal m2_i)//читал что-то про чистые функции и читаемость кода. Может это и правильно, что
+    private dynamic solution(double k1_i, double k2_i,double m1_i, double m2_i)//читал что-то про чистые функции и читаемость кода. Может это и правильно, что
     //функция явно принимает то с чем будет работать.
     {
-        decimal[]? output = new decimal[2];
+        double[]? output = new double[2];
         // decimal sup_val_x,sup_val_y;
     //         Предрасчётная часть:
     // k1==k2? > дальше не считаем ;
@@ -90,8 +91,8 @@ class linear_equation{
     }
     public dynamic report()
     {
-        string description=($"Графики функций a={this.coefficients[_keys[0]]}x+{this.coefficients[_keys[1]]} и a1={this.coefficients[_keys[2]]}x+{this.coefficients[_keys[3]]} ");
-        decimal[] output_main=solution( k1_i:this.coefficients[_keys[0]],
+        string description=($"Графики функций f(x1)={this.coefficients[_keys[0]]}x+{this.coefficients[_keys[2]]} и f(x2)={this.coefficients[_keys[1]]}x+{this.coefficients[_keys[3]]} ");
+        double[] output_main=solution( k1_i:this.coefficients[_keys[0]],
                                     k2_i:this.coefficients[_keys[1]],
                                     m1_i:this.coefficients[_keys[2]],
                                     m2_i:this.coefficients[_keys[3]]    );
@@ -102,7 +103,7 @@ class linear_equation{
         else
         {
         string answer_str=string.Join(", ",output_main);
-        WriteLine(description+$"пересекаются в точке {answer_str}");
+        WriteLine(description+$"пересекаются в точке ({answer_str}).");
         
         }
         return null!;
