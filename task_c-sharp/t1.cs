@@ -1,7 +1,7 @@
 using static System.Console;
 class input_flow
 {
-    List<decimal> answers= new List<decimal>();
+    protected List<decimal> answers= new List<decimal>();
     
     public static void todo()
     {
@@ -21,7 +21,7 @@ protected bool stop_the_cycle(bool inc_spin)
     inc_spin=false;
     return inc_spin;
 }
-    void read_data_by_todo(decimal[] coll_i)
+    protected void read_data_by_todo(decimal[] coll_i)
     {
         int vocal_expression=0;
         foreach (decimal walk in coll_i)
@@ -50,7 +50,7 @@ protected bool stop_the_cycle(bool inc_spin)
         WriteLine("Пожалуйста вводи числа, ctrl+c для завершения");
         while (spin_the_cycle)
         {
-            buffer_str=ReadLine();
+            buffer_str=ReadLine()!;
             is_valid_input=decimal.TryParse(buffer_str,out buffer_dcm);
             if (is_valid_input)
             {
@@ -59,7 +59,7 @@ protected bool stop_the_cycle(bool inc_spin)
         
 
         }
-        return null; 
+        return null!; 
     }
     public input_flow()
     {
