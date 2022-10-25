@@ -16,7 +16,7 @@ class input_flow
         }
         return output;
     }
-bool stop_the_cycle(bool inc_spin)
+protected bool stop_the_cycle(bool inc_spin)
 {
     inc_spin=false;
     return inc_spin;
